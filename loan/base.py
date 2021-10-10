@@ -120,3 +120,28 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGGING = {
+    'version': 1,
+    'loggers': {
+        'basicLogger': {'handlers': ['basicLog'], 'level': 'DEBUG'},
+        'loanLogger': {'handlers': ['loanLog'], 'level': 'WARNING'},
+    },
+    'handlers': {
+        'basicLog': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': './log/basicLog.log',
+            'formatter': 'basicLogFormat',
+        },
+        'loanLog': {
+            'class': 'logging.FileHandler',
+            'filename': './log/loanLog.log',
+            'formatter': 'loanLogFormat',
+        },
+    },
+    'formatters': {
+        'basicLogFormat': {'format': '{name} {levelname}: {pathname} {message}', 'style': '{'},
+        'loanLogFormat': {'format': '{name} {levelname}: {pathname} {message}', 'style': '{'},
+    },
+}

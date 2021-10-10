@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     # 3rd party
     'allauth',
     'allauth.account',
-
+    # local
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [

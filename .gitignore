@@ -1,0 +1,8 @@
+.vscode
+myenv/
+.env
+
+*.log
+*.pot
+*.pyc
+__pycache__/

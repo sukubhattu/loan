@@ -39,6 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    # 3rd party
+    'allauth',
+    'allauth.account',
+
 ]
 
 MIDDLEWARE = [
@@ -145,3 +150,11 @@ LOGGING = {
         'loanLogFormat': {'format': '{name} {levelname}: {pathname} {message}', 'style': '{'},
     },
 }
+
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]

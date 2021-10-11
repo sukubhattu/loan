@@ -3,4 +3,7 @@ from .views import *
 
 app_name = 'users'
 
-urlpatterns = []
+urlpatterns = [
+    path('profile-details', profile_details, name='details'),
+    path('update_profile_details', update_profile_details, name='update_profile_details'),
+]

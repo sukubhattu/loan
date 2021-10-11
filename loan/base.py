@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     # local
     'users.apps.UsersConfig',
     'dashboard',
+    'misc',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,66 @@
+ {% load static %}
+ {% block extracss %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="{% static 'css/nav.css' %}">
+ {% endblock extracss %}
+<!-- nav section strats -->
+    <header class="header_section mb-5">
+      <div class="header_bottom">
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container ">
+            <a class="navbar-brand" >
+              <span>
+                Loan
+              </span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class=""> </span>
+            </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ">
+                <li class="nav-item">
+                  <a class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link"> About</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Categories
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/books?category=novels">Novels</a>
+                    <a class="dropdown-item" href="/books?category=story">Story</a>
+                    <a class="dropdown-item" href="/books?category=fantasy">Fantasy</a>
+                    <a class="dropdown-item" href="/books?category=adventures">Adventure</a>
+                    <a class="dropdown-item" href="/books?category=fiction">Fiction</a>
+                  </div>
+                </li>
+								{% if user.is_authenticated %}
+                  <li class="nav-item">
+										<a class="nav-link" >List Book</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" >Hi, {{user.email|slice:"10"|title}}</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="{% url 'account_logout' %}">Log Out</a>
+									</li>
+									{% else %}
+									<li class="nav-item">
+										<a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="{% url 'account_login' %}">Log In</a>
+									</li>
+								{% endif %}
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <!-- end nav section -->

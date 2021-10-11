@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extracss %}
+<link rel="stylesheet" href={% static 'css/form.css' %}>
+{% endblock extracss %}
+ 
+{% block title %}Profile Details{% endblock title %}
+
+{% block content %}
+	<div class="container">
+	<h2 class="text-center mt-3 header-text">
+		Fill this form
+	</h2>
+	<form action="" method="POST" id="profileForm">
+		{% csrf_token %}
+		<input type="text" id="fname" name="firstname" placeholder="Your first name" required>
+		<input type="text" id="lname" name="lastname" placeholder="Your last name" required>
+		<input type="text" id="address" name="address" placeholder="Your address" required>
+		<div class="form-check radio-buttons">
+			<div>
+				<input class="form-check-input" type="radio" name="gender" id="gridRadios1" value="Male" checked>
+        <label class="form-check-label" for="gridRadios1">
+          Male
+        </label>
+			</div>
+			<div>
+				<input class="form-check-input" type="radio" name="gender" id="gridRadios2" value="Female">
+        <label class="form-check-label" for="gridRadios2">
+          Female
+        </label>
+			</div>
+			<div>
+				<input class="form-check-input" type="radio" name="gender" id="gridRadios2" value="None">
+        <label class="form-check-label" for="gridRadios2">
+          None
+        </label>
+			</div>
+				
+    </div>
+		<input class="input-group date py-2 px-4 mt-1 mb-1 date-picker" data-provide="datepicker" type="date" id="dob" name="dob" min="2000-01-02" max="2001-002-03" required>
+		{% comment %} max date will be set by js {% endcomment %}
+		<input type="number" id="contactNumber" name="contactNumber" placeholder="Your contact number" required>
+		<input type="number" id="loanAmount" name="loanAmount" placeholder="Your loan amount" required>
+		<input type="number" id="loanTerm" name="loanTerm" placeholder="Your loan term in years" required>
+		<input type="number" id="installementAmount" name="installmentAmount" step=0.01 placeholder="Your installment amount" required>
+		<button type="submit" class="btn btn-success mt-3" id="profile-save">Save</button>
+	</form>
+		
+	</div>
+{% endblock content %}
+
+{% block extrascript %}
+<script>
+$("#profileForm").submit(function(e){
+	e.preventDefault();
+	$.blockUI({ message: null });
+	$.ajax({
+		type:'POST',
+		url:"{% url 'users:update_profile_details'%}",
+		data : $('#profileForm').serialize(),
+		success:function(data){
+			$.unblockUI();
+			window.location = {% url 'dashboard:dashboard' %}
+		},
+		error:function(xhr, errmsg, err){
+			$.unblockUI();
+			console.log(errmsg);
+		}
+	})
+});
+var today = new Date()
+var today_date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+document.getElementById('dob').setAttribute("max", today_date);
+</script>
+{% endblock extrascript %}
+
+
+
+

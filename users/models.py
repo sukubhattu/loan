@@ -22,6 +22,8 @@ class UserProfile(models.Model):
     loan_amount = models.FloatField(blank=True, null=True)
     loan_term = models.PositiveIntegerField(default=10)
     installment_amount = models.FloatField(blank=True, null=True)
+    is_complete = models.BooleanField(default=False)
+    is_approved_by_admin = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # 3rd party
     'allauth',
     'allauth.account',
+    'crispy_forms',
     # local
     'users.apps.UsersConfig',
 ]
@@ -62,7 +63,7 @@ ROOT_URLCONF = 'loan.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -161,3 +162,12 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SITE_ID = 1
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
+ACCOUNT_UNIQUE_EMAIL = True
+
+# crispy forms
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

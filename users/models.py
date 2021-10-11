@@ -15,6 +15,8 @@ User._meta.get_field('email')._unique = True
 
 class UserProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='userprofile')
+    first_name = models.CharField(max_length=200, null=True, blank=True)
+    last_name = models.CharField(max_length=200, null=True, blank=True)
     address = models.CharField(max_length=200, null=True, blank=True)
     gender = models.CharField(max_length=10, choices=GENDER, default='Male')
     dob = models.DateField(blank=True, null=True)

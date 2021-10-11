@@ -135,6 +135,11 @@ LOGGING = {
     'loggers': {
         'basicLogger': {'handlers': ['basicLog'], 'level': 'DEBUG'},
         'loanLogger': {'handlers': ['loanLog'], 'level': 'WARNING'},
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
     },
     'handlers': {
         'basicLog': {
@@ -147,6 +152,9 @@ LOGGING = {
             'class': 'logging.FileHandler',
             'filename': './log/loanLog.log',
             'formatter': 'loanLogFormat',
+        },
+        'console': {
+            'class': 'logging.StreamHandler',
         },
     },
     'formatters': {

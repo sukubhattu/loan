@@ -174,3 +174,5 @@ ACCOUNT_UNIQUE_EMAIL = True
 
 # crispy forms
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

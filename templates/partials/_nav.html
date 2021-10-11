@@ -27,24 +27,12 @@
                   <a class="nav-link"> About</a>
                 </li>
 
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Categories
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/books?category=novels">Novels</a>
-                    <a class="dropdown-item" href="/books?category=story">Story</a>
-                    <a class="dropdown-item" href="/books?category=fantasy">Fantasy</a>
-                    <a class="dropdown-item" href="/books?category=adventures">Adventure</a>
-                    <a class="dropdown-item" href="/books?category=fiction">Fiction</a>
-                  </div>
-                </li>
 								{% if user.is_authenticated %}
                   <li class="nav-item">
 										<a class="nav-link" >List Book</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" >Hi, {{user.email|slice:"10"|title}}</a>
+										<a class="nav-link" >Hi, {{user.username|slice:"10"|title}}</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link" href="{% url 'account_logout' %}">Log Out</a>

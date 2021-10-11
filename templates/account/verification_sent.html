@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% block head_title %}{% trans "Change Password" %}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h1 class="header-text">Verify Your E-mail Address</h1>
+				<p>
+					{% blocktrans %}
+						We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes.
+					{% endblocktrans %}
+					<div class="alert alert-dark" role="alert">
+						Contact at email@email.com
+					</div>
+				</p>
+      </div>
+	</div>
+{% endblock %}

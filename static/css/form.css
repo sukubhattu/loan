@@ -1,0 +1,22 @@
+input[type=text],[type=number], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+input[type=text]:focus {
+	border: none;
+  outline: 2px solid rgb(123, 205, 233);
+}
+
+.radio-buttons > div{
+	display: inline-block;
+	margin-right: 40px;
+}
+.date-picker{
+	border: 1px solid #ccc;
+  border-radius: 4px;
+	color:#aaa;
+}

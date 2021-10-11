@@ -10,7 +10,7 @@
           <nav class="navbar navbar-expand-lg custom_nav-container ">
             <a class="navbar-brand" >
               <span>
-                Pasal
+                Loan
               </span>
             </a>
 
@@ -39,25 +39,12 @@
                     <a class="dropdown-item" href="/books?category=fiction">Fiction</a>
                   </div>
                 </li>
-                <li class="nav-item">
-                  <form class="form-inline mt-2 mt-md-0 search_form" 
-                    method="get">
-                    <input name="query" class="form-control search-form" type="text" placeholder="Search Book"
-                    aria-label="Search">
-                    <button class="" type="submit">
-                      <i class="fa fa-search" aria-hidden="true"></i>
-                    </button>
-                  </form>
-                </li>
 								{% if user.is_authenticated %}
                   <li class="nav-item">
 										<a class="nav-link" >List Book</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" >Hi, {{user.first_name|slice:"10"|title}}</a>
-									</li>
-                  <li class="nav-item">
-										<a class="nav-link" ><i style="display: inline-block; font-size: 22px; position: relative;" class="bi bi-cart3 mb-2" ><span id="cart-count"></span></i></a>
+										<a class="nav-link" >Hi, {{user.email|slice:"10"|title}}</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link" href="{% url 'account_logout' %}">Log Out</a>

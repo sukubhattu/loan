@@ -8,6 +8,13 @@
 	<title>
 		{% block title %}Loan{% endblock title %}
 	</title>
+		<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+		{% comment %} <link rel="stylesheet" href="{% static 'css/jquery.toast.min.css' %}" /> {% endcomment %}
+		<!-- fonts style -->
+		<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet" />
+		{% comment %} <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" /> {% endcomment %}
+		<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+		{% block extracss %}{% endblock extracss %}
 </head>
 <body>
 	{% include 'partials/_nav.html' %}

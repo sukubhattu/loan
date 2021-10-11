@@ -32,7 +32,7 @@
 										<a class="nav-link" >List Book</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" >Hi, {{user.email|slice:"10"|title}}</a>
+										<a class="nav-link" >Hi, {{user.username|slice:"10"|title}}</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link" href="{% url 'account_logout' %}">Log Out</a>

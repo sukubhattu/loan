@@ -29,7 +29,7 @@ class UserProfile(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return str(self.first_name + ' ' + self.last_name)[:20]
+        return str(self.user)
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)

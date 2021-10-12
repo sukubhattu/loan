@@ -15,7 +15,20 @@ class LoanOrder(models.Model):
     loan_type = models.CharField(max_length=2, choices=LOAN_TYPE)
     loan_status = models.CharField(max_length=20, default='processing', choices=LOAN_STATUS)
     is_approved = models.BooleanField(default=False)
+    is_complete = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.loan_id)
+
+    @classmethod
+    def create_loan_order(cls, user_id, loan_type, loan_amount, loan_term):
+        user_profile = UserProfile.objects.get(user_id=user_id)
+        incomplete_loan_orders = cls.objects.filter(
+            user_id=user_profile.id, loan_status='processing', is_approved=False, loan_type=loan_type
+        )
+        incomplete_loan_orders.update(loan_status='ignored')
+        cls.objects.create(user=user_profile, loan_amount=loan_amount, loan_term=loan_term, loan_type=loan_type)
 
 
 class LoanOrderItem(models.Model):

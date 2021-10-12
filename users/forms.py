@@ -1,9 +1,6 @@
 from django import forms
-from django.db import models
-from django.db.models.expressions import F
 from django.forms.fields import DateField
 from .constants import GENDER
-from django.contrib.admin.widgets import AdminDateWidget
 
 from django.forms.widgets import NumberInput
 

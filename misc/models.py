@@ -1,3 +1,5 @@
 from django.db import models
 
-# Create your models here.
+
+class UserLoanInstallmentPaymentSession(models.Model):
+    session_id = models.TextField()

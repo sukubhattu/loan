@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load custom_tags_transaction %}
 {% load static %}
 {% block extracss %}
 <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
@@ -20,9 +21,42 @@
 			Thank You. We have received your details. Our admin will check your details and activate your account soon !
 		</div>
 		{% else %}
+		<p>Apply for loan</p>
+		<input type="button" class="btn btn-success btn-block mt-4" id="stripeSubmitBtn" value="Pay Now"></input>
 	{% endif %}
 	</div>
 {% endblock content %}
+{% block extrascript %}
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+fetch('/checkout_stripe')
+	.then((result) => {
+		return result.json();
+	})
+	.then((data) => {
+		// Initialize Stripe.js
+		const stripe = Stripe(data.publicKey);
+
+		// new
+		// Event handler
+		document.querySelector('#stripeSubmitBtn').addEventListener('click', () => {
+			// Get Checkout Session ID
+			fetch('/stripe_checkout_session')
+				.then((result) => {
+					return result.json();
+				})
+				.then((data) => {
+					console.log(data);
+					// Redirect to Stripe Checkout
+					return stripe.redirectToCheckout({ sessionId: data.sessionId });
+				})
+				.then((res) => {
+					console.log(res);
+				});
+		});
+	});
+</script>
+{% endblock extrascript %}
 
 
 

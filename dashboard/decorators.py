@@ -11,7 +11,6 @@ def profile_complete_required(view_func):
         if not user_profile.is_complete:
             return redirect('users:details')
         else:
-            print("Profile is  complete")
             return view_func(request, *args, **kwargs)
 
     return wrapper_func

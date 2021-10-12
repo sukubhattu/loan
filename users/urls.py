@@ -5,5 +5,7 @@ app_name = 'users'
 
 urlpatterns = [
     path('profile-details', profile_details, name='details'),
-    path('update_profile_details', update_profile_details, name='update_profile_details'),
+    path(
+        'update_profile_details', update_profile_details, name='update_profile_details'
+    ),  # this api is depreciated for now
 ]

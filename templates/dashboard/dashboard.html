@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load custom_tags_transaction %}
+{% load crispy_forms_tags %}
 {% load static %}
 {% block extracss %}
 <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
@@ -22,6 +23,11 @@
 		</div>
 		{% else %}
 		<p>Apply for loan</p>
+		<form action="" method="POST">
+			{% csrf_token %}
+			{{form|crispy}}
+			<button class="btn btn-success" type="submit">Submit</button>
+		</form>
 		<input type="button" class="btn btn-success btn-block mt-4" id="stripeSubmitBtn" value="Pay Now"></input>
 	{% endif %}
 	</div>

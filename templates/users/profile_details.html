@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 {% load static %}
 {% block extracss %}
 <link rel="stylesheet" href={% static 'css/form.css' %}>
@@ -11,7 +12,14 @@
 	<h2 class="text-center mt-3 header-text">
 		Fill this form
 	</h2>
-	<form action="" method="POST" id="profileForm">
+	<form action="" method="POST">
+		{% csrf_token %}
+		{{ form|crispy}}
+		<button class="btn btn-success" type="submit">Submit</button>
+	</form>
+	
+
+	{% comment %} <form action="" method="POST" id="profileForm">
 		{% csrf_token %}
 		<input type="text" id="fname" name="firstname" placeholder="Your first name" required>
 		<input type="text" id="lname" name="lastname" placeholder="Your last name" required>
@@ -43,14 +51,14 @@
 		<input type="number" id="loanTerm" name="loanTerm" placeholder="Your loan term in years" required>
 		<input type="number" id="installementAmount" name="installmentAmount" step=0.01 placeholder="Your installment amount" required>
 		<button type="submit" class="btn btn-success mt-3" id="profile-save">Save</button>
-	</form>
+	</form> {% endcomment %}
 		
 	</div>
 {% endblock content %}
 
 {% block extrascript %}
 <script>
-$("#profileForm").submit(function(e){
+{% comment %} $("#profileForm").submit(function(e){
 	e.preventDefault();
 	$.blockUI({ message: null });
 	$.ajax({
@@ -66,9 +74,10 @@ $("#profileForm").submit(function(e){
 			console.log(errmsg);
 		}
 	})
-});
+}); {% endcomment %}
 var today = new Date()
 var today_date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+document.getElementById('dob').setAttribute("min","1930-01-02");
 document.getElementById('dob').setAttribute("max", today_date);
 </script>
 {% endblock extrascript %}

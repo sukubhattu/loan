@@ -1,5 +1,4 @@
 from django import forms
-from django.forms.fields import DateField
 from .constants import GENDER
 
 from django.forms.widgets import NumberInput

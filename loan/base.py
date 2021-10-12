@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'dashboard',
     'misc',
+    'transaction',
 ]
 
 MIDDLEWARE = [

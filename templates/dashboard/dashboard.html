@@ -1,14 +1,26 @@
 {% extends "base.html" %}
 {% load static %}
 {% block extracss %}
-
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 {% endblock extracss %}
  
 {% block title %}Dashboard{% endblock title %}
 
 {% block content %}
 	<div class="container">
-		<p>Hi you are in dashboard</p>
+	<div class="row">
+		<div class="col-lg-12">
+    <div class="user-profile mb-5">
+     	<img class="user-profile-picture" src="https://avatars.dicebear.com/api/bottts/{{user_profile.first_name}}.svg">
+    	<p class="mt-4">{{user.email}}</p></div>
+		</div>
+	</div>
+	{% if not user_profile.is_approved_by_admin %}
+		<div class="alert alert-success" role="alert">
+			Thank You. We have received your details. Our admin will check your details and activate your account soon !
+		</div>
+		{% else %}
+	{% endif %}
 	</div>
 {% endblock content %}
 

@@ -11,9 +11,13 @@
 	<div class="container">
 	<div class="row">
 		<div class="offset-lg-2 col-lg-8 profile-detail-card">
+			<div class="alert alert-dark text-center mb-4" role="alert">
+				Please fill this form carefully. This data is required to activate your account. Else you cannot apply for loan.
+			</div>
 			<h2 class="text-center mt-3 header-text">
-				Fill this form
+				Your Profile Details
 			</h2>
+
 			<form action="" method="POST">
 				{% csrf_token %}
 				{{ form|crispy}}

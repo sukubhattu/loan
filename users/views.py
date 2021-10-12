@@ -6,12 +6,20 @@ from django.http import JsonResponse
 from datetime import datetime
 from django.utils import dateparse
 from django.utils.dateparse import parse_date
+
 from .models import UserProfile
+from .forms import UserProfileForm
 
 
 @login_required
 def profile_details(request):
-    return render(request, 'users/profile_details.html')
+    if request.method == "POST":
+        form = UserProfileForm(request.POST)
+        if form.is_valid():
+            print("form valid")
+    else:
+        form = UserProfileForm(initial={'gender': 'Male'})
+    return render(request, 'users/profile_details.html', {'form': form})
 
 
 @login_required

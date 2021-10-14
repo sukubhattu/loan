@@ -17,6 +17,10 @@ def index(request):
     return render(request, 'misc/index.html')
 
 
+def about(request):
+    return render(request, 'misc/about.html')
+
+
 @csrf_exempt
 @login_required
 def checkout_stripe(request):

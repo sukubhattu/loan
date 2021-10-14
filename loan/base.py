@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'dashboard',
     'misc',
+    'transaction',
 ]
 
 MIDDLEWARE = [
@@ -185,3 +186,8 @@ ACCOUNT_UNIQUE_EMAIL = True
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+# Stripe
+STRIPE_PUBLISHABLE_KEY = os.environ.get('API_KEY')
+STRIPE_SECRET_KEY = os.environ.get('API_SECRET')

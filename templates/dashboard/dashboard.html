@@ -1,16 +1,99 @@
 {% extends "base.html" %}
+{% load custom_tags_transaction %}
+{% load crispy_forms_tags %}
 {% load static %}
 {% block extracss %}
-
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 {% endblock extracss %}
  
 {% block title %}Dashboard{% endblock title %}
 
 {% block content %}
 	<div class="container">
-		<p>Hi you are in dashboard</p>
+		<div class="row">
+			<div class="col-lg-12">
+			<div class="user-profile mb-5">
+				<img class="user-profile-picture" src="https://avatars.dicebear.com/api/bottts/{{user_profile.first_name}}.svg">
+				<p class="mt-4">{{user.email}}</p></div>
+			</div>
+		</div>
+		{% if not user_profile.is_approved_by_admin %}
+			<div class="alert alert-success" role="alert">
+				Thank You. We have received your details. Our admin will check your details and activate your account soon !
+			</div>
+		{% endif %}
+		<div class="row">
+			<div class="col-lg-6">
+				{% if user.id|get_loan_status %}
+					<div class="alert alert-primary" role="alert">
+						<h5 class="mb-3 ">Your Loan Details</h5>
+						<p><b>Loan Id</b>: {{loan_order.loan_id}}</p>
+						<p><b>Loan satus</b>: {{loan_order.loan_status|title}}</p>
+						<p><b>Loan Amount </b>: {{loan_order.loan_amount|floatformat:2 }}</p>
+						<p><b>Loan Amount Remaining</b>: {{loan_order.loan_remaining_amount|floatformat:2 }}</p>
+						<p><b>Loan Term</b>: {{loan_order.loan_term}} years</p>
+						<p><b>Loan Type</b>: {{loan_order.loan_type}}</p>
+						<input type="button" class="btn btn-success btn-block mt-4" id="stripeSubmitBtn" value="Pay Installment Amount"></input>
+					</div>
+					{% else %}
+					<h3 class="header-text">Apply for loan</h3>
+					<form action="" method="POST">
+						{% csrf_token %}
+						{{form|crispy}}
+						<button class="btn btn-success" type="submit">Submit</button>
+					</form>
+				{% endif %}
+			</div>
+			<div class="col-lg-6">
+				{% if loan_order_items %}
+					<div class="alert alert-primary" role="alert">
+						<h5 class="mb-3 ">Your Loan Installment Logs</h5>
+						{% for loan_order_item in loan_order_items %}
+							<li>
+								{{loan_order_item.installment_amount|floatformat:2 }} &nbsp; {{loan_order_item.created}}
+							</li>
+						{% endfor %}
+					</div>
+					{% else %}
+						<div class="alert alert-dark" role="alert">
+							There are no transactions yet
+						</div>
+				{% endif %}
+			</div>
+		</div>
 	</div>
 {% endblock content %}
+{% block extrascript %}
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+fetch('/checkout_stripe')
+	.then((result) => {
+		return result.json();
+	})
+	.then((data) => {
+		// Initialize Stripe.js
+		const stripe = Stripe(data.publicKey);
+
+		// new
+		// Event handler
+		document.querySelector('#stripeSubmitBtn').addEventListener('click', () => {
+			// Get Checkout Session ID
+			fetch('/stripe_checkout_session')
+				.then((result) => {
+					return result.json();
+				})
+				.then((data) => {
+					console.log(data);
+					// Redirect to Stripe Checkout
+					return stripe.redirectToCheckout({ sessionId: data.sessionId });
+				})
+				.then((res) => {
+					console.log(res);
+				});
+		});
+	});
+</script>
+{% endblock extrascript %}
 
 
 

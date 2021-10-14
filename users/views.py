@@ -1,19 +1,45 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import JsonResponse
 
 from datetime import datetime
 from django.utils import dateparse
 from django.utils.dateparse import parse_date
+
 from .models import UserProfile
+from .forms import UserProfileForm
 
 
 @login_required
 def profile_details(request):
-    return render(request, 'users/profile_details.html')
+    if request.method == "POST":
+        form = UserProfileForm(request.POST)
+        if form.is_valid():
+            user_profile = UserProfile.objects.get(user_id=request.user.id)
+            data_to_be_updated = {
+                "first_name": form.cleaned_data['first_name'],
+                "last_name": form.cleaned_data['last_name'],
+                "address": form.cleaned_data['address'],
+                "gender": form.cleaned_data['gender'],
+                "date_of_birth": form.cleaned_data['date_of_birth'],
+                "contact_number": form.cleaned_data['contact_number'],
+                "loan_amount": form.cleaned_data['loan_amount'],
+                "loan_term": form.cleaned_data['loan_term'],
+                "installment_amount": form.cleaned_data['installment_amount'],
+                "is_complete": True,
+            }
+            for key, value in data_to_be_updated.items():
+                setattr(user_profile, key, value)
+            user_profile.save()
+            return redirect('dashboard:dashboard')
+    else:
+        form = UserProfileForm(initial={'gender': 'Male'})
+    return render(request, 'users/profile_details.html', {'form': form})
 
 
+# This API is depreciated for now.
+# Currently this API does not support proper validation
 @login_required
 def update_profile_details(request):
     if request.method == "POST":

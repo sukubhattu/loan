@@ -32,7 +32,10 @@ a:focus {
 }
 
 .sub-header-text{
+  margin-top: 25px;
+  margin-bottom: 0px;
   font-weight: bold;
   margin-bottom: 20px;
-  color: #4a5b99;
+  font-size: 22px;
+  color: #3a4468;
 }

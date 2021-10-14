@@ -1,17 +1,116 @@
-{% extends "base.html" %}
-{% load static %}
-{% block extracss %}
-{% endblock extracss %}
- 
-{% block title %}Home{% endblock title %}
-
-{% block content %}
-	<div class="container">
-		<p>Hi you are in index page</p>
+{% extends "base.html" %} {% load static %} {% block extracss %}
+<link rel="stylesheet" href="{% static 'css/common.css' %}" />
+{% endblock extracss %} {% block title %}Home{% endblock title %} {% block content %}
+<div class="container">
+	<div class="services_section layout_padding">
+		<h1 class="header-text text-center">Our Services</h1>
+		<p class="services_text mb-5">
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor molestias facere reiciendis animi soluta sapiente
+			unde facilis excepturi cum neque veritatis fugiat quae, autem cumque eos ipsam eum maxime id! Reiciendis magni,
+			aspernatur omnis debitis temporibus voluptas quis soluta mollitia.
+		</p>
+		<div class="services_section_2 layout_padding">
+			<div class="row">
+				<div class="col-md-3 center-block">
+					<div class="section-box-ten">
+						<figure>
+							<h3 class="wall_text">Loan Type 1</h3>
+							<p class="lorem_text">Hello. I am helper text for the loan mentioned. Let's just have a dummy value</p>
+						</figure>
+						<img src="{% static 'images/img-3.png' %}" class="img-responsive" />
+					</div>
+				</div>
+				<div class="col-md-3 center-block">
+					<div class="section-box-ten">
+						<figure>
+							<h3 class="wall_text">Loan Type 2</h3>
+							<p class="lorem_text">Hello. I am helper text for the loan mentioned. Let's just have a dummy value</p>
+						</figure>
+						<img src="{% static 'images/img-4.png' %}" class="img-responsive" />
+					</div>
+				</div>
+				<div class="col-md-3 center-block">
+					<div class="section-box-ten">
+						<figure>
+							<h3 class="wall_text">Loan Type 3</h3>
+							<p class="lorem_text">Hello. I am helper text for the loan mentioned. Let's just have a dummy value</p>
+						</figure>
+						<img src="{% static 'images/img-5.png' %}" class="img-responsive" />
+					</div>
+				</div>
+				<div class="col-md-3 center-block">
+					<div class="section-box-ten">
+						<figure>
+							<h3 class="wall_text">Loan Type 4</h3>
+							<p class="lorem_text">Hello. I am helper text for the loan mentioned. Let's just have a dummy value</p>
+						</figure>
+						<img src="{% static 'images/img-6.png' %}" class="img-responsive" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="readmore_bt"><a href="#">Read More</a></div>
 	</div>
+	 <section class="about_section mt-5 mb-5">
+    <div class="container-fluid  ">
+      <div class="row">
+        <div class="col-md-5 ml-auto">
+          <div class="detail-box pr-md-3">
+            <div class="heading_container">
+              <h2>
+                We Provide Best Deal For You
+              </h2>
+            </div>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus nemo ratione ullam quia quos mollitia maxime ipsam laudantium deserunt, repudiandae vel quo explicabo eaque fugiat molestias numquam dolor optio exercitationem?
+            </p>
+            
+          </div>
+        </div>
+        <div class="col-md-6 px-0">
+          <div class="img-box">
+            <img src="{% static 'images/loan.png' %}" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+	<div class="choose_section layout_padding">
+		<div class="choose_main">
+			<h1 class="header-text">Why Choose Us</h1>
+			<p class="choose_text">
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, aliquam sunt? Quod, magnam harum nam quibusdam
+				dignissimos nulla aliquam perspiciatis.
+			</p>
+
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="house_icon">
+						<img src="{% static 'images/icon-1.png' %}" class="image_1" />
+						<img src="{% static 'images/icon-4.png' %}" class="image_2" />
+					</div>
+					<h2 class="sub-header-text">Choose Us</h2>
+					<p class="choose_text">Hello. I am helper text for the loan mentioned. Let's just have a dummy value</p>
+				</div>
+				<div class="col-lg-4">
+					<div class="house_icon">
+						<img src="{% static 'images/icon-2.png' %}" class="image_1" />
+						<img src="{% static 'images/icon-5.png' %}" class="image_2" />
+					</div>
+					<h2 class="sub-header-text">Choose Us</h2>
+					<p class="choose_text">Hello. I am helper text for the loan mentioned. Let's just have a dummy value</p>
+				</div>
+				<div class="col-lg-4">
+					<div class="house_icon">
+						<img src="{% static 'images/icon-3.png' %}" class="image_1" />
+						<img src="{% static 'images/icon-6.png' %}" class="image_2" />
+					</div>
+					<h2 class="sub-header-text">Choose Us</h2>
+					<p class="choose_text">Hello. I am helper text for the loan mentioned. Let's just have a dummy value</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
 {% endblock content %}
-
-
-
-
-

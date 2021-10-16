@@ -50,6 +50,7 @@ def stripe_checkout_session(request):
         total = str(total)
     except:
         pass
+    total = 25000 * 10
     if request.method == 'GET':
         domain_url = 'http://localhost:8000/'
         stripe.api_key = settings.STRIPE_SECRET_KEY

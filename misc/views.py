@@ -12,6 +12,10 @@ from .models import UserLoanInstallmentPaymentSession
 from users.models import UserProfile
 from transaction.models import LoanOrder, LoanOrderItem
 
+import logging
+
+logger = logging.getLogger('loanLogger')
+
 
 def index(request):
     return render(request, 'misc/index.html')
@@ -46,6 +50,7 @@ def stripe_checkout_session(request):
         total = str(total)
     except:
         pass
+    total = 25000 * 10
     if request.method == 'GET':
         domain_url = 'http://localhost:8000/'
         stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -89,10 +94,12 @@ def success(request):
             loan_order.save()
             user_profile = UserProfile.objects.get(user_id=request.user.id)
             LoanOrderItem.objects.create(loan=loan_order, user=user_profile, installment_amount=paid_amount)
+            logger.info(f"User profile {user_profile} paid {paid_amount} on loan id {loan_order}")
 
             if loan_order.loan_remaining_amount <= 0:
                 loan_order.is_complete = True
                 loan_order.save()
+                logger.info(f"Loan Id {loan_order} is marked as complete")
             UserLoanInstallmentPaymentSession.objects.create(session_id=session_id)
 
     except Exception as e:

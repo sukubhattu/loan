@@ -134,8 +134,8 @@ STATIC_URL = '/static/'
 LOGGING = {
     'version': 1,
     'loggers': {
-        'basicLogger': {'handlers': ['basicLog'], 'level': 'DEBUG'},
-        'loanLogger': {'handlers': ['loanLog'], 'level': 'WARNING'},
+        'basicLogger': {'handlers': ['basicLog'], 'level': 'WARNING'},
+        'loanLogger': {'handlers': ['loanLog'], 'level': 'DEBUG'},
         'django': {
             'handlers': ['console'],
             'level': 'INFO',
@@ -160,7 +160,7 @@ LOGGING = {
     },
     'formatters': {
         'basicLogFormat': {'format': '{name} {levelname}: {pathname} {message}', 'style': '{'},
-        'loanLogFormat': {'format': '{name} {levelname}: {pathname} {message}', 'style': '{'},
+        'loanLogFormat': {'format': '{name} {levelname}: {message}', 'style': '{'},
     },
 }
 

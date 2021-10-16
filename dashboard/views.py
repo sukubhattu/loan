@@ -8,6 +8,10 @@ from .decorators import profile_complete_required
 from transaction.forms import LoanOrderForm
 from transaction.models import LoanOrder, LoanOrderItem
 
+import logging
+
+logger = logging.getLogger('loanLogger')
+
 
 @login_required
 @profile_complete_required
@@ -20,6 +24,9 @@ def dashboard(request):
             loan_amount = form.cleaned_data['loan_amount']
             loan_term = form.cleaned_data['loan_term']
             LoanOrder.create_loan_order(user_id, loan_type, loan_amount, loan_term)
+            logger.info(
+                f"User Id {user_id} took loan of type {loan_type} with loan amount {loan_amount} of term {loan_term}"
+            )
     else:
         form = LoanOrderForm(initial={'loan_type': 'EL'})
     loan_order = []
@@ -30,11 +37,11 @@ def dashboard(request):
         loan_order_items = LoanOrderItem.objects.filter(user=user_profile)
     except:
         pass
-    print(loan_order)
     context = {
         'user_profile': user_profile,
         'form': form,
         'loan_order': loan_order,
         'loan_order_items': loan_order_items,
     }
+
     return render(request, 'dashboard/dashboard.html', context)

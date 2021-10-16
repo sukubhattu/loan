@@ -1,0 +1,73 @@
+ 
+ {% extends "base.html" %}
+ {% load static %}
+ {% block extracss %}
+	<link rel="stylesheet" href="{% static 'css/calculator.css' %}">
+ {% endblock extracss %}
+
+
+
+{% block title %}Calculator{% endblock title %}
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-lg-6">
+		<div class="mb-3">
+			<div class="slidecontainer">
+				<input type="range" min="100000" max="2000000" value="1000000" step="100000" class="slider" id="amount">
+			</div>
+			<div class="slidecontainer">
+				<input type="range" min="1" max="20" value="10" step="0.1" class="slider" id="interest">
+			</div>
+			<div class="slidecontainer">
+				<input type="range" min="1" max="30" value="10" class="slider" id="year">
+			</div>
+		</div>
+			
+			<p class="title">Amount: $ <span id="amount1"></span></p>
+			<p class="title">Interest Rate: <span id="interest1"></span></p>
+			<p class="title">Years: <span id="year1"></span></p>
+		</div>
+		<div class="col-lg-6">
+			<div class="calculated-section">
+				<h3 class="sub-header-text">Calculated Results</h3>
+				<div class="columns is-multiline">
+					<div class="mb-3">
+						<div class="notification is-primary has-text">
+							<span class="mr-3"><b>Monthly Payment</b></span>
+							<span id="monthlyPayment">$</span>
+							
+						</div>
+					</div>
+					<div class="mb-3">
+						<div class="notification is-info has-text">
+							<span class="mr-3"><b>Total Interest</b></span>
+							<span id="totalInterest">$</span>
+							
+						</div>
+					</div>
+					<div class="mb-3">
+						<div class="notification is-link has-text">
+						<span class="mr-3"><b>Total Amount</b></span>
+							<span id="totalPayment">$</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}
+
+{% block extrascript %}
+	<script src="{% static 'js/calculator.js' %}"></script>
+{% endblock extrascript %}
+
+
+
+
+
+
+

@@ -21,6 +21,10 @@ def about(request):
     return render(request, 'misc/about.html')
 
 
+def calculator(request):
+    return render(request, 'misc/calculator.html')
+
+
 @csrf_exempt
 @login_required
 def checkout_stripe(request):

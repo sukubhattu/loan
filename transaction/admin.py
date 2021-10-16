@@ -12,7 +12,8 @@ class LoanOrderAdmin(admin.ModelAdmin):
 
 class LoanOrderItemAdmin(admin.ModelAdmin):
     model = LoanOrderItem
-    list_display = ['loan']
+    list_display = ['loan', 'user', 'installment_amount']
+    search_fields = ['user__user__username', 'loan__loan_id']
 
 
 admin.site.register(LoanOrder, LoanOrderAdmin)
